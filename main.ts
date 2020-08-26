@@ -146,3 +146,45 @@ hero.setPosition(scene.screenWidth() / 2, 100)
 hero.setFlag(SpriteFlag.StayInScreen, true)
 // set the controls
 controller.moveSprite(hero, 200, 200)
+// Set the Coins 
+let coins = sprites.create(img`
+    . . . . . . . . . . . . . . . .
+    . . 5 5 5 5 5 5 5 . . . . . . .
+    . 5 . . . . . . . 5 . . . . . .
+    . 5 . . . 5 . . . 5 . . . . . .
+    . 5 . . . 5 . . . 5 . . . . . .
+    . 5 . . . 5 . . . 5 . . . . . .
+    . 5 . . . 5 . . . 5 . . . . . .
+    . 5 . . . 5 . . . 5 . . . . . .
+    . 5 . . . . . . . 5 . . . . . .
+    . . 5 5 5 5 5 5 5 . . . . . . .
+    . . . . . . . . . . . . . . . .
+    . . . . . . . . . . . . . . . .
+    . . . . . . . . . . . . . . . .
+    . . . . . . . . . . . . . . . .
+    . . . . . . . . . . . . . . . .
+    . . . . . . . . . . . . . . . .
+`)
+coins.setPosition(randint(scene.screenWidth(), 0), -10)
+coins.setVelocity(0, 50)
+// set the rocks 
+let rocks = sprites.create(img`
+    . . . . . . . . . . . . . . . .
+    . . . . b b b b b b b . . . . .
+    . . . b b . . . . . b b . . . .
+    . . b b b b b b b b b b b . . .
+    . b b b b b b . . . . . b b . .
+    . b b . b b . . b b b b b b . .
+    . b . b b b . b b b b b b b . .
+    . b . b b b . b b b b b b b . .
+    . b . . b b b b b b . . b b . .
+    . b b . b b b b b b b . b b . .
+    . b b b b b b b . . b b b b . .
+    . . b b b b b b . b b b b . . .
+    . . . b b b b . . b b b . . . .
+    . . . . b b . b b b b . . . . .
+    . . . . . . . . . . . . . . . .
+    . . . . . . . . . . . . . . . .
+`)
+rocks.setPosition(randint(scene.screenWidth(), 0), -10)
+rocks.setVelocity(0, 50)

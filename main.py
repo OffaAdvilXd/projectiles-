@@ -149,7 +149,45 @@ controller.move_sprite(hero,200,200)
 
 
 #Set the Coins 
-
+coins= sprites.create(img("""
+    . . . . . . . . . . . . . . . .
+    . . 5 5 5 5 5 5 5 . . . . . . .
+    . 5 . . . . . . . 5 . . . . . .
+    . 5 . . . 5 . . . 5 . . . . . .
+    . 5 . . . 5 . . . 5 . . . . . .
+    . 5 . . . 5 . . . 5 . . . . . .
+    . 5 . . . 5 . . . 5 . . . . . .
+    . 5 . . . 5 . . . 5 . . . . . .
+    . 5 . . . . . . . 5 . . . . . .
+    . . 5 5 5 5 5 5 5 . . . . . . .
+    . . . . . . . . . . . . . . . .
+    . . . . . . . . . . . . . . . .
+    . . . . . . . . . . . . . . . .
+    . . . . . . . . . . . . . . . .
+    . . . . . . . . . . . . . . . .
+    . . . . . . . . . . . . . . . .
+"""))
+coins.set_position(randint(scene.screen_width(),0),-10)
+coins.set_velocity(0, 50)
 #set the rocks 
-
+rocks= sprites.create(img("""
+    . . . . . . . . . . . . . . . .
+    . . . . b b b b b b b . . . . .
+    . . . b b . . . . . b b . . . .
+    . . b b b b b b b b b b b . . .
+    . b b b b b b . . . . . b b . .
+    . b b . b b . . b b b b b b . .
+    . b . b b b . b b b b b b b . .
+    . b . b b b . b b b b b b b . .
+    . b . . b b b b b b . . b b . .
+    . b b . b b b b b b b . b b . .
+    . b b b b b b b . . b b b b . .
+    . . b b b b b b . b b b b . . .
+    . . . b b b b . . b b b . . . .
+    . . . . b b . b b b b . . . . .
+    . . . . . . . . . . . . . . . .
+    . . . . . . . . . . . . . . . .
+"""))
+rocks.set_position(randint(scene.screen_width(), 0), -10)
+rocks.set_velocity(0, 50)
 #set the projectiles 
