@@ -171,6 +171,7 @@ def on_update_interval():
     """))
     coins.set_position(randint(scene.screen_width(),0),-10)
     coins.set_velocity(0, 50)
+    coins.set_kind(SpriteKind.food)
 game.on_update_interval(900, on_update_interval)
 #set the rocks 
 
@@ -227,5 +228,12 @@ sprites.on_overlap(SpriteKind.player, SpriteKind.enemy, on_overlap)
 def on_overlap2(sprite, otherSprite):
     sprite.destroy()
     otherSprite.destroy(effects.ashes,100)
-    info.change_score_by(1)
 sprites.on_overlap(SpriteKind.projectile, SpriteKind.enemy, on_overlap2)
+# when coins are collected equals a point 
+def on_overlap3(sprite, otherSprite):
+    otherSprite.destroy()
+    info.change_score_by(1)
+    if info.score() % 10 is 0:
+        if info.life() < 5:
+            info.change_life_by(1)
+sprites.on_overlap(SpriteKind.player, SpriteKind.food, on_overlap3)

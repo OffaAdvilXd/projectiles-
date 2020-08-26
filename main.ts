@@ -169,6 +169,7 @@ game.onUpdateInterval(900, function on_update_interval() {
     `)
     coins.setPosition(randint(scene.screenWidth(), 0), -10)
     coins.setVelocity(0, 50)
+    coins.setKind(SpriteKind.Food)
 })
 // set the rocks 
 game.onUpdateInterval(500, function on_update_interval2() {
@@ -224,5 +225,16 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function on_overlap(sprit
 sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function on_overlap2(sprite: Sprite, otherSprite: Sprite) {
     sprite.destroy()
     otherSprite.destroy(effects.ashes, 100)
+})
+//  when coins are collected equals a point 
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function on_overlap3(sprite: Sprite, otherSprite: Sprite) {
+    otherSprite.destroy()
     info.changeScoreBy(1)
+    if (info.score() % 10 === 0) {
+        if (info.life() < 5) {
+            info.changeLifeBy(1)
+        }
+        
+    }
+    
 })
