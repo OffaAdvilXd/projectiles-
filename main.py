@@ -144,6 +144,7 @@ hero= sprites.create(img("""
 """))
 hero.set_position(scene.screen_width()/2, 100)
 hero.set_flag(SpriteFlag.StayInScreen, True)
+hero.set_kind(SpriteKind.player)
 #set the controls
 controller.move_sprite(hero,200,200)
 
@@ -194,6 +195,7 @@ def on_update_interval2():
     """))
     rocks.set_position(randint(scene.screen_width(), 0), -10)
     rocks.set_velocity(0, 50)
+    rocks.set_kind(SpriteKind.enemy)
 game.on_update_interval(500, on_update_interval2)
 #set the projectiles 
 def on_button_event_a_pressed():
@@ -216,3 +218,14 @@ def on_button_event_a_pressed():
     . . . . . . . . . . . . . . . .
     """), hero, 0, -50)
 controller.player1.on_button_event(ControllerButton.A, ControllerButtonEvent.PRESSED, on_button_event_a_pressed)
+# lose life when hit by rock
+def on_overlap(sprite, otherSprite):
+    otherSprite.destroy()
+    info.change_life_by(-1)
+sprites.on_overlap(SpriteKind.player, SpriteKind.enemy, on_overlap)
+# destroy rock when hit by projectiles
+def on_overlap2(sprite, otherSprite):
+    sprite.destroy()
+    otherSprite.destroy(effects.ashes,100)
+    info.change_score_by(1)
+sprites.on_overlap(SpriteKind.projectile, SpriteKind.enemy, on_overlap2)

@@ -144,6 +144,7 @@ let hero = sprites.create(img`
 `)
 hero.setPosition(scene.screenWidth() / 2, 100)
 hero.setFlag(SpriteFlag.StayInScreen, true)
+hero.setKind(SpriteKind.Player)
 // set the controls
 controller.moveSprite(hero, 200, 200)
 // Set the Coins 
@@ -191,6 +192,7 @@ game.onUpdateInterval(500, function on_update_interval2() {
     `)
     rocks.setPosition(randint(scene.screenWidth(), 0), -10)
     rocks.setVelocity(0, 50)
+    rocks.setKind(SpriteKind.Enemy)
 })
 // set the projectiles 
 controller.player1.onButtonEvent(ControllerButton.A, ControllerButtonEvent.Pressed, function on_button_event_a_pressed() {
@@ -212,4 +214,15 @@ controller.player1.onButtonEvent(ControllerButton.A, ControllerButtonEvent.Press
     . . . . . . . . . . . . . . . .
     . . . . . . . . . . . . . . . .
     `, hero, 0, -50)
+})
+//  lose life when hit by rock
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function on_overlap(sprite: Sprite, otherSprite: Sprite) {
+    otherSprite.destroy()
+    info.changeLifeBy(-1)
+})
+//  destroy rock when hit by projectiles
+sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function on_overlap2(sprite: Sprite, otherSprite: Sprite) {
+    sprite.destroy()
+    otherSprite.destroy(effects.ashes, 100)
+    info.changeScoreBy(1)
 })
