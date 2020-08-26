@@ -124,7 +124,7 @@ scene.setBackgroundImage(img`
 info.setScore(0)
 info.setLife(3)
 //  Set the player 
-let my_sprite = sprites.create(img`
+let hero = sprites.create(img`
     . . . . . . . . . . . . . . . .
     . . . . . . . . . . . . . . . .
     . . . . . . . . . . . . . . . .
@@ -142,3 +142,7 @@ let my_sprite = sprites.create(img`
     . . . . . 2 2 2 . 2 2 2 . . . .
     . . . . . d d d . d d d . . . .
 `)
+hero.setPosition(scene.screenWidth() / 2, 100)
+hero.setFlag(SpriteFlag.StayInScreen, true)
+// set the controls
+controller.moveSprite(hero, 200, 200)

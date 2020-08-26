@@ -124,7 +124,7 @@ scene.set_background_image(img("""
 info.set_score(0)
 info.set_life(3)
 # Set the player 
-my_sprite = sprites.create(img("""
+hero= sprites.create(img("""
     . . . . . . . . . . . . . . . .
     . . . . . . . . . . . . . . . .
     . . . . . . . . . . . . . . . .
@@ -142,6 +142,11 @@ my_sprite = sprites.create(img("""
     . . . . . 2 2 2 . 2 2 2 . . . .
     . . . . . d d d . d d d . . . .
 """))
+hero.set_position(scene.screen_width()/2, 100)
+hero.set_flag(SpriteFlag.StayInScreen, True)
+#set the controls
+controller.move_sprite(hero,200,200)
+
 
 #Set the Coins 
 
