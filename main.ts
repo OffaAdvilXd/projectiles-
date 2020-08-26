@@ -147,7 +147,8 @@ hero.setFlag(SpriteFlag.StayInScreen, true)
 // set the controls
 controller.moveSprite(hero, 200, 200)
 // Set the Coins 
-let coins = sprites.create(img`
+game.onUpdateInterval(900, function on_update_interval() {
+    let coins = sprites.create(img`
     . . . . . . . . . . . . . . . .
     . . 5 5 5 5 5 5 5 . . . . . . .
     . 5 . . . . . . . 5 . . . . . .
@@ -164,11 +165,13 @@ let coins = sprites.create(img`
     . . . . . . . . . . . . . . . .
     . . . . . . . . . . . . . . . .
     . . . . . . . . . . . . . . . .
-`)
-coins.setPosition(randint(scene.screenWidth(), 0), -10)
-coins.setVelocity(0, 50)
+    `)
+    coins.setPosition(randint(scene.screenWidth(), 0), -10)
+    coins.setVelocity(0, 50)
+})
 // set the rocks 
-let rocks = sprites.create(img`
+game.onUpdateInterval(500, function on_update_interval2() {
+    let rocks = sprites.create(img`
     . . . . . . . . . . . . . . . .
     . . . . b b b b b b b . . . . .
     . . . b b . . . . . b b . . . .
@@ -185,6 +188,28 @@ let rocks = sprites.create(img`
     . . . . b b . b b b b . . . . .
     . . . . . . . . . . . . . . . .
     . . . . . . . . . . . . . . . .
-`)
-rocks.setPosition(randint(scene.screenWidth(), 0), -10)
-rocks.setVelocity(0, 50)
+    `)
+    rocks.setPosition(randint(scene.screenWidth(), 0), -10)
+    rocks.setVelocity(0, 50)
+})
+// set the projectiles 
+controller.player1.onButtonEvent(ControllerButton.A, ControllerButtonEvent.Pressed, function on_button_event_a_pressed() {
+    let blast = sprites.createProjectileFromSprite(img`
+    . . . . . . . . . . . . . . . .
+    . . . . . . . . . . . . . . . .
+    . . . . . . . . . . . . . . . .
+    . . . . . . . . . . . . . . . .
+    . . . . . . . . . . . . . . . .
+    . . . . . . . . . . . . . . . .
+    . . . . . . . . . . . . . . . .
+    . . . . . . . . . . . . . . . .
+    . . . . . . . . . . . . . . . .
+    . . . . . . . . 9 . . . . . . .
+    . . . . . . . f f f . . . . . .
+    . . . . . . a a a a a . . . . .
+    . . . . . 1 1 1 1 1 1 1 . . . .
+    . . . . . . . . . . . . . . . .
+    . . . . . . . . . . . . . . . .
+    . . . . . . . . . . . . . . . .
+    `, hero, 0, -50)
+})

@@ -149,7 +149,8 @@ controller.move_sprite(hero,200,200)
 
 
 #Set the Coins 
-coins= sprites.create(img("""
+def on_update_interval():
+    coins= sprites.create(img("""
     . . . . . . . . . . . . . . . .
     . . 5 5 5 5 5 5 5 . . . . . . .
     . 5 . . . . . . . 5 . . . . . .
@@ -166,11 +167,14 @@ coins= sprites.create(img("""
     . . . . . . . . . . . . . . . .
     . . . . . . . . . . . . . . . .
     . . . . . . . . . . . . . . . .
-"""))
-coins.set_position(randint(scene.screen_width(),0),-10)
-coins.set_velocity(0, 50)
+    """))
+    coins.set_position(randint(scene.screen_width(),0),-10)
+    coins.set_velocity(0, 50)
+game.on_update_interval(900, on_update_interval)
 #set the rocks 
-rocks= sprites.create(img("""
+
+def on_update_interval2():
+    rocks= sprites.create(img("""
     . . . . . . . . . . . . . . . .
     . . . . b b b b b b b . . . . .
     . . . b b . . . . . b b . . . .
@@ -187,7 +191,28 @@ rocks= sprites.create(img("""
     . . . . b b . b b b b . . . . .
     . . . . . . . . . . . . . . . .
     . . . . . . . . . . . . . . . .
-"""))
-rocks.set_position(randint(scene.screen_width(), 0), -10)
-rocks.set_velocity(0, 50)
+    """))
+    rocks.set_position(randint(scene.screen_width(), 0), -10)
+    rocks.set_velocity(0, 50)
+game.on_update_interval(500, on_update_interval2)
 #set the projectiles 
+def on_button_event_a_pressed():
+    blast = sprites.create_projectile_from_sprite(img("""
+    . . . . . . . . . . . . . . . .
+    . . . . . . . . . . . . . . . .
+    . . . . . . . . . . . . . . . .
+    . . . . . . . . . . . . . . . .
+    . . . . . . . . . . . . . . . .
+    . . . . . . . . . . . . . . . .
+    . . . . . . . . . . . . . . . .
+    . . . . . . . . . . . . . . . .
+    . . . . . . . . . . . . . . . .
+    . . . . . . . . 9 . . . . . . .
+    . . . . . . . f f f . . . . . .
+    . . . . . . a a a a a . . . . .
+    . . . . . 1 1 1 1 1 1 1 . . . .
+    . . . . . . . . . . . . . . . .
+    . . . . . . . . . . . . . . . .
+    . . . . . . . . . . . . . . . .
+    """), hero, 0, -50)
+controller.player1.on_button_event(ControllerButton.A, ControllerButtonEvent.PRESSED, on_button_event_a_pressed)
