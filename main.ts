@@ -146,7 +146,7 @@ hero.setPosition(scene.screenWidth() / 2, 100)
 hero.setFlag(SpriteFlag.StayInScreen, true)
 hero.setKind(SpriteKind.Player)
 // set the controls
-controller.moveSprite(hero, 200, 200)
+controller.moveSprite(hero, 200, 0)
 // Set the Coins 
 game.onUpdateInterval(900, function on_update_interval() {
     let coins = sprites.create(img`

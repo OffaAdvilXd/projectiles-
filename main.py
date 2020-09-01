@@ -146,7 +146,7 @@ hero.set_position(scene.screen_width()/2, 100)
 hero.set_flag(SpriteFlag.StayInScreen, True)
 hero.set_kind(SpriteKind.player)
 #set the controls
-controller.move_sprite(hero,200,200)
+controller.move_sprite(hero,200,0)
 
 
 #Set the Coins 
@@ -236,4 +236,6 @@ def on_overlap3(sprite, otherSprite):
     if info.score() % 10 is 0:
         if info.life() < 5:
             info.change_life_by(1)
-sprites.on_overlap(SpriteKind.player, SpriteKind.food, on_overlap3)
+sprites.on_overlap(SpriteKind.player, SpriteKind.food, on_overlap3) 
+#enemy's speed go up when you reach 50 each time 
+
